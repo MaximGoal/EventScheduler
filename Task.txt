@@ -1,0 +1,37 @@
+Main task
+The Event Scheduler
+
+This scheduler should be able to schedule events which are going in some gym hall.
+For example for sport halls, yoga halls, educational halls.
+The main interface is web.
+
+Components: halls, events, event types, participants(участники),
+admins (realize authorization), scheduler board, ... etc.
+
+Admin part - several admins should be able to manage several halls.
+One hall has his own start and end time of working.
+One hall is a single room. So only one event can take place at a definite time.
+There is a history of past events.
+Admin have an opportunity to see some statistic information.
+Clients/visitors have an opportunity to sign up on definite event.
+So visitors are not authorized, but sign up through web form.
+
+Realize authorization via web site of visitors & organizers & admin.
+
+Основная работа:
+Организатор мероприятия должен через сайт выбирать свободное время в определенном зале и регистрироваться на мероприятие.
+Это время резервируется за ним.
+Организатор мероприятия может просматривать информацию о мероприятии: время, название, стоимость аренды зала,
+количество записавшихся людей.
+Админ - это лицо-владелец всех залов. Он сдает в аренду и получает доход от сдачи.
+Админ должен видеть всю статистику по залам: какое время занято, стомость за день/месяц.
+Должна храниться история всех прошедших мероприятий и список будущих.
+(оповещение посетителей о скором начале мероприятия)
+
+
+Used technologies:
+Maven, Spring, GIT, REST, DateTime, PostgreSQL, JDBCTemplate, Hibernate, HTTP, HTML, Thymeleaf, Pattens
+JUnit
+
+Do it!
+
