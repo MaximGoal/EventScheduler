@@ -1,4 +1,4 @@
-package schedulerProject.model;
+package schedulerProject.model.event;
 
 import org.springframework.context.annotation.Bean;
 
@@ -9,11 +9,13 @@ import java.util.TimeZone;
 
 public class Event {
     private final static int SECONDS_IN_DAY = 24 * 60 * 60;
+    private int id;
     private String name;
     private int timeFrom;
     private int timeTo;
     private Date date;
     private boolean weekend;
+    private EventType eventType;
 
     public Event(String name, int timeFrom, int timeTo, Date date) {
         this.name = name;
@@ -21,6 +23,16 @@ public class Event {
         this.timeTo = timeTo;
         this.date = date;
         weekend = isWeekend(date);
+        eventType = EventType.MEETING;
+    }
+
+    public Event(String name, int timeFrom, int timeTo, Date date, EventType eventType) {
+        this.name = name;
+        this.timeFrom = timeFrom;
+        this.timeTo = timeTo;
+        this.date = date;
+        weekend = isWeekend(date);
+        this.eventType = eventType;
     }
 
     private boolean isWeekend(Date date) {

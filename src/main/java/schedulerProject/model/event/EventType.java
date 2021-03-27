@@ -1,4 +1,4 @@
-package schedulerProject.model;
+package schedulerProject.model.event;
 
 public enum EventType {
     MEETING,
