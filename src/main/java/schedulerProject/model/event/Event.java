@@ -74,6 +74,14 @@ public class Event {
         this.date = date;
     }
 
+    public EventType getEventType() {
+        return eventType;
+    }
+
+    public void setEventType(EventType eventType) {
+        this.eventType = eventType;
+    }
+
     @Override
     public String toString() {
         return "Event{" +

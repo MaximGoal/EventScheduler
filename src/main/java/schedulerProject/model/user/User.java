@@ -37,4 +37,7 @@ public abstract class User {
         this.lastName = lastName;
         this.telephone = telephone;
     }
+
+    public void login(String password) {}
+
 }
