@@ -1,6 +1,7 @@
 package schedulerProject.model.event;
 
 import org.springframework.context.annotation.Bean;
+import schedulerProject.model.room.Room;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -16,6 +17,7 @@ public class Event {
     private Date date;
     private boolean weekend;
     private EventType eventType;
+    private Room room;
 
     public Event(String name, int timeFrom, int timeTo, Date date) {
         this.name = name;
@@ -26,7 +28,7 @@ public class Event {
         eventType = EventType.MEETING;
     }
 
-    public Event(String name, int timeFrom, int timeTo, Date date, EventType eventType) {
+    public Event(String name, int timeFrom, int timeTo, Date date, EventType eventType, Room room) {
         this.name = name;
         this.timeFrom = timeFrom;
         this.timeTo = timeTo;
@@ -82,13 +84,25 @@ public class Event {
         this.eventType = eventType;
     }
 
+    public Room getRoom() {
+        return room;
+    }
+
+    public void setRoom(Room room) {
+        this.room = room;
+    }
+
     @Override
     public String toString() {
         return "Event{" +
-                "name='" + name + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 ", timeFrom=" + timeFrom +
                 ", timeTo=" + timeTo +
                 ", date=" + date +
+                ", weekend=" + weekend +
+                ", eventType=" + eventType +
+                ", room=" + room +
                 '}';
     }
 }

@@ -1,5 +1,7 @@
 package schedulerProject.model.user;
 
+import schedulerProject.model.room.Room;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
@@ -17,4 +19,5 @@ public class Admin extends User {
     public void login(String password) {
         super.login(password);
     }
+
 }
