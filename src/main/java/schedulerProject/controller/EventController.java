@@ -9,10 +9,8 @@ import schedulerProject.model.event.Event;
 import schedulerProject.model.event.EventDAO;
 import schedulerProject.model.room.Room;
 import schedulerProject.model.user.AdminDAO;
-import sun.text.normalizer.NormalizerBase;
 
-import java.security.SecureRandom;
-import java.security.spec.ECField;
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/event")
@@ -20,18 +18,21 @@ public class EventController {
     private final AdminDAO adminDAO;
     private final EventDAO eventDAO;
 
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     @Autowired
     public EventController(AdminDAO adminDAO, EventDAO eventDAO) {
         this.adminDAO = adminDAO;
         this.eventDAO = eventDAO;
     }
 
+    // this "newEvent" method means that it'll be a html with form to create new Event &
+    // with button that invoke Post request to "createEvent" method
     @GetMapping("/new")
     public String newEvent (@ModelAttribute("event") Event event) {
-        return "/event/new";
+        return "/event";
     }
 
-    // finish writing
+    // finish writing later
     @PostMapping
     public String createEvent (@ModelAttribute("event") Event event, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) return ""; // improve later
@@ -58,7 +59,22 @@ public class EventController {
         return "/event/edit";
     }
 
-    //realize methods
-    // update
-    // delete
+    // finish writing later
+    @PostMapping("/{id}")
+    public String update (@ModelAttribute("event") @Valid Event event,
+                          BindingResult bindingResult,
+                          @PathVariable("id") int id) {
+        if (bindingResult.hasErrors())
+            return ""; // improve later
+
+        eventDAO.update(id, event);
+        return "redirect:/event";
+    }
+
+    @DeleteMapping("/{id}")
+    public String delete (@PathVariable("id") int id) {
+        eventDAO.delete(id);
+        return "/event";
+    }
+
 }

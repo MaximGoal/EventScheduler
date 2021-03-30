@@ -12,12 +12,16 @@ public class Event {
     private final static int SECONDS_IN_DAY = 24 * 60 * 60;
     private int id;
     private String name;
+    private Date date;
     private int timeFrom;
     private int timeTo;
-    private Date date;
     private boolean weekend;
     private EventType eventType;
-    private Room room;
+    private int room;
+    private int cost;
+
+    public Event() {
+    }
 
     public Event(String name, int timeFrom, int timeTo, Date date) {
         this.name = name;
@@ -42,6 +46,22 @@ public class Event {
         calendar.setTime(date);
         return calendar.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY
                 || calendar.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY;
+    }
+
+    public void setWeekend(boolean weekend) {
+        this.weekend = weekend;
+    }
+
+    public boolean isWeekend() {
+        return weekend;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId (int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -84,12 +104,20 @@ public class Event {
         this.eventType = eventType;
     }
 
-    public Room getRoom() {
+    public int getRoom() {
         return room;
     }
 
-    public void setRoom(Room room) {
+    public void setRoom(int room) {
         this.room = room;
+    }
+
+    public int getCost() {
+        return cost;
+    }
+
+    public void setCost(int cost) {
+        this.cost = cost;
     }
 
     @Override

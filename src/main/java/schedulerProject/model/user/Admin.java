@@ -1,10 +1,6 @@
 package schedulerProject.model.user;
 
-import schedulerProject.model.room.Room;
-
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
+import org.springframework.context.annotation.Bean;
 
 public class Admin extends User {
 

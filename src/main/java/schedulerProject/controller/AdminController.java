@@ -25,8 +25,8 @@ public class AdminController {
         this.roomDAO = roomDAO;
     }
 
-    // finish writing
-    @PostMapping
+    // finish writing later
+    @PostMapping("/newroom")
     public String createRoom (@ModelAttribute("room") Room room, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) return ""; // improve later
 
@@ -34,5 +34,13 @@ public class AdminController {
         return ""; // improve later
     }
 
+    // finish writing later
+    @PostMapping("/newevent")
+    public String createEvent (@ModelAttribute("event") Room room, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) return ""; // improve later
+
+        roomDAO.save(room);
+        return ""; // improve later
+    }
 
 }

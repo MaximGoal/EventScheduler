@@ -37,4 +37,5 @@ public class Room {
     public void setAddress(String address) {
         this.address = address;
     }
+
 }
