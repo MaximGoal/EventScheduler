@@ -48,6 +48,10 @@ public class Event {
                 || calendar.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY;
     }
 
+    public boolean getWeekend() {
+        return weekend;
+    }
+
     public void setWeekend(boolean weekend) {
         this.weekend = weekend;
     }

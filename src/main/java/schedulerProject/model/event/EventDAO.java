@@ -30,13 +30,15 @@ public class EventDAO {
     }
 
     public void save(Event event) {
-        jdbcTemplate.update("INSERT INTO events VALUES (?, ?, ?, ?, ?, ?)",
-                event.getName(), event.getTimeFrom(), event.getTimeTo(), event.getDate(), event.getEventType(), event.getRoom());
+        jdbcTemplate.update("INSERT INTO events VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+                event.getName(), event.getEventType(), event.getDate(), event.getWeekend(),
+                event.getTimeFrom(), event.getTimeTo(), event.getCost(), event.getRoom());
     }
 
     public void update(int id, Event eventUpd) {
         jdbcTemplate.update("UPDATE events SET name=?, start_time=?, end_time=?, date=?, type=? room=? WHERE id=?",
-                eventUpd.getName(), eventUpd.getTimeFrom(), eventUpd.getTimeTo(), eventUpd.getDate(), eventUpd.getEventType(), eventUpd.getRoom(), id);
+                eventUpd.getName(), eventUpd.getTimeFrom(), eventUpd.getTimeTo(),
+                eventUpd.getDate(), eventUpd.getEventType(), eventUpd.getRoom(), id);
     }
 
     public void delete(int id) {

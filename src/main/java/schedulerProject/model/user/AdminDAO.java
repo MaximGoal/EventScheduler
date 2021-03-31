@@ -2,7 +2,6 @@ package schedulerProject.model.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import schedulerProject.model.room.Room;
 
 public class AdminDAO {
     private JdbcTemplate jdbcTemplate;
@@ -12,10 +11,10 @@ public class AdminDAO {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-//    public void createRoom () {
-//        String name = "";
-//        String adress = "";
-//        Room room = new Room(name, adress);
-//        jdbcTemplate.update("INSERT INTO rooms VALUE(?,?)", room.getName(), room.getAddress());
-//    }
+    public void save (Admin admin) {
+        jdbcTemplate.update("INSERT INTO admins VALUE(?,?,?,?,?,?)",
+                admin.getFirstName(), admin.getLastName(), admin.getPatronymic(),
+                admin.getTelephone(), admin.getEmail(), admin.getPassword());
+    }
+
 }
