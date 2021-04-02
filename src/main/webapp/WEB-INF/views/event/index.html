@@ -7,16 +7,16 @@
 <body>
 
 <div th:each="event : ${events}">
-    <a th:href="@{/event/{id}(id=${event.getId()})}"
-       th:text="${event.getId() +' , '+ event.getName() +' , '+ event.getEventType() +' , '+ event.getDate() +' , '+
-                    event.getTimeFrom() +' , '+ event.getTimeTo() +' , '+ event.getCost()}">
+    <a th:href="@{/event/{id}(id=${event.getEvent_id()})}"
+       th:text="${event.getEvent_id() +' , '+ event.getName() +' , '+ event.getType() +' , '+ event.getDate() +' , '+
+                    event.getStart_time() +' , '+ event.getEnd_time() +' , '+ event.getCost() +' , '+ event.getRoom()}">
         some event</a>
 </div>
 
 <br/>
 <hr/>
 
-<a href="/event/new">Create new person</a>
+<a href="/event/new">Create new event</a>
 
 </body>
 </html>

@@ -1,8 +1,5 @@
 package schedulerProject.model.event;
 
-import org.springframework.context.annotation.Bean;
-import schedulerProject.model.room.Room;
-
 import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
@@ -10,42 +7,48 @@ import java.util.TimeZone;
 
 public class Event {
     private final static int SECONDS_IN_DAY = 24 * 60 * 60;
-    private int id;
+    private int event_id;
     private String name;
+    private EventType type;
     private Date date;
-    private int timeFrom;
-    private int timeTo;
+    private int start_time;
+    private int end_time;
     private boolean weekend;
-    private EventType eventType;
     private int room;
     private int cost;
 
     public Event() {
     }
 
-    public Event(String name, int timeFrom, int timeTo, Date date) {
+    public Event(String name, int start_time, int end_time, Date date) {
         this.name = name;
-        this.timeFrom = timeFrom;
-        this.timeTo = timeTo;
+        this.start_time = start_time;
+        this.end_time = end_time;
         this.date = date;
-        weekend = isWeekend(date);
-        eventType = EventType.MEETING;
+        weekend = isDateWeekend(date);
+        type = EventType.MEETING;
     }
 
-    public Event(String name, int timeFrom, int timeTo, Date date, EventType eventType, Room room) {
+    public Event(String name, int start_time, int end_time, Date date, EventType type, int room) {
         this.name = name;
-        this.timeFrom = timeFrom;
-        this.timeTo = timeTo;
+        this.start_time = start_time;
+        this.end_time = end_time;
         this.date = date;
-        weekend = isWeekend(date);
-        this.eventType = eventType;
+        weekend = isDateWeekend(date);
+        this.type = type;
+        this.room = room;
+        // cost = realizeCostMethod()
     }
 
-    private boolean isWeekend(Date date) {
+    private boolean isDateWeekend(Date date) {
         Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
         calendar.setTime(date);
         return calendar.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY
                 || calendar.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY;
+    }
+
+    public boolean isWeekend() {
+        return weekend;
     }
 
     public boolean getWeekend() {
@@ -56,16 +59,12 @@ public class Event {
         this.weekend = weekend;
     }
 
-    public boolean isWeekend() {
-        return weekend;
+    public int getEvent_id() {
+        return event_id;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId (int id) {
-        this.id = id;
+    public void setEvent_id(int event_id) {
+        this.event_id = event_id;
     }
 
     public String getName() {
@@ -76,20 +75,20 @@ public class Event {
         this.name = name;
     }
 
-    public int getTimeFrom() {
-        return timeFrom;
+    public int getStart_time() {
+        return start_time;
     }
 
-    public void setTimeFrom(int timeFrom) {
-        this.timeFrom = timeFrom;
+    public void setStart_time(int start_time) {
+        this.start_time = start_time;
     }
 
-    public int getTimeTo() {
-        return timeTo;
+    public int getEnd_time() {
+        return end_time;
     }
 
-    public void setTimeTo(int timeTo) {
-        this.timeTo = timeTo;
+    public void setEnd_time(int end_time) {
+        this.end_time = end_time;
     }
 
     public Date getDate() {
@@ -100,12 +99,12 @@ public class Event {
         this.date = date;
     }
 
-    public EventType getEventType() {
-        return eventType;
+    public EventType getType() {
+        return type;
     }
 
-    public void setEventType(EventType eventType) {
-        this.eventType = eventType;
+    public void setType(EventType type) {
+        this.type = type;
     }
 
     public int getRoom() {
@@ -127,13 +126,13 @@ public class Event {
     @Override
     public String toString() {
         return "Event{" +
-                "id=" + id +
+                "id=" + event_id +
                 ", name='" + name + '\'' +
-                ", timeFrom=" + timeFrom +
-                ", timeTo=" + timeTo +
+                ", timeFrom=" + start_time +
+                ", timeTo=" + end_time +
                 ", date=" + date +
                 ", weekend=" + weekend +
-                ", eventType=" + eventType +
+                ", eventType=" + type +
                 ", room=" + room +
                 '}';
     }

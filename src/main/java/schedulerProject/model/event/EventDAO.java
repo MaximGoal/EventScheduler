@@ -17,7 +17,10 @@ public class EventDAO {
     }
 
     public List<Event> index() {
-        return jdbcTemplate.query("SELECT * FROM events", new BeanPropertyRowMapper<>(Event.class));
+        return jdbcTemplate.query("SELECT * FROM events",
+//                new BeanPropertyRowMapper<>(Event.class)
+                new EventMapper()
+        );
     }
 
     public Event show(int id) {
@@ -31,14 +34,14 @@ public class EventDAO {
 
     public void save(Event event) {
         jdbcTemplate.update("INSERT INTO events VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
-                event.getName(), event.getEventType(), event.getDate(), event.getWeekend(),
-                event.getTimeFrom(), event.getTimeTo(), event.getCost(), event.getRoom());
+                event.getName(), event.getType(), event.getDate(), event.getWeekend(),
+                event.getStart_time(), event.getEnd_time(), event.getCost(), event.getRoom());
     }
 
     public void update(int id, Event eventUpd) {
         jdbcTemplate.update("UPDATE events SET name=?, start_time=?, end_time=?, date=?, type=? room=? WHERE id=?",
-                eventUpd.getName(), eventUpd.getTimeFrom(), eventUpd.getTimeTo(),
-                eventUpd.getDate(), eventUpd.getEventType(), eventUpd.getRoom(), id);
+                eventUpd.getName(), eventUpd.getStart_time(), eventUpd.getEnd_time(),
+                eventUpd.getDate(), eventUpd.getType(), eventUpd.getRoom(), id);
     }
 
     public void delete(int id) {
