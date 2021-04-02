@@ -8,5 +8,20 @@ public enum EventType {
     RELIGIOUS,
     HOLIDAY,
     SECRET,
-    BUSINESS
+    BUSINESS;
+
+    @Override
+    public String toString() {
+        switch (this) {
+            case EDUCATIONAL: return "EDUCATIONAL";
+            case SPORT: return "SPORT";
+            case YOGA: return "YOGA";
+            case RELIGIOUS: return "RELIGIOUS";
+            case HOLIDAY: return "HOLIDAY";
+            case SECRET: return "SECRET";
+            case BUSINESS: return "BUSINESS";
+            case MEETING:
+            default: return "MEETING";
+        }
+    }
 }

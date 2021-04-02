@@ -25,26 +25,27 @@ public class EventController {
         this.eventDAO = eventDAO;
     }
 
+    @GetMapping()
+    public String index (Model model) {
+        model.addAttribute("events", eventDAO.index());
+        return "event/index";
+    }
+
     // this "newEvent" method means that it'll be a html with form to create new Event &
     // with button that invoke Post request to "createEvent" method
+
     @GetMapping("/new")
     public String newEvent (@ModelAttribute("event") Event event) {
         return "/event";
     }
-
     // finish writing later
+
     @PostMapping
     public String createEvent (@ModelAttribute("event") Event event, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) return ""; // improve later
 
         eventDAO.save(event);
         return "redirect:/event"; // improve later
-    }
-
-    @GetMapping("/index")
-    public String index (Model model) {
-        model.addAttribute("events", eventDAO.index());
-        return "/event";
     }
 
     @GetMapping("/{id}")
@@ -56,7 +57,7 @@ public class EventController {
     @GetMapping("/{id}/edit")
     public String edit(@PathVariable("id") int id, Model model) {
         model.addAttribute("event", eventDAO.show(id));
-        return "/event/edit";
+        return "event/edit";
     }
 
     // finish writing later
@@ -74,7 +75,7 @@ public class EventController {
     @DeleteMapping("/{id}")
     public String delete (@PathVariable("id") int id) {
         eventDAO.delete(id);
-        return "/event";
+        return "redirect:/event";
     }
 
 }

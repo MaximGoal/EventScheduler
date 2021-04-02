@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Events</title>
+</head>
+<body>
+
+<div th:each="event : ${events}">
+    <a th:href="@{/event/{id}(id=${event.getId()})}"
+       th:text="${event.getId() +' , '+ event.getName() +' , '+ event.getEventType() +' , '+ event.getDate() +' , '+
+                    event.getTimeFrom() +' , '+ event.getTimeTo() +' , '+ event.getCost()}">
+        some event</a>
+</div>
+
+<br/>
+<hr/>
+
+<a href="/event/new">Create new person</a>
+
+</body>
+</html>
