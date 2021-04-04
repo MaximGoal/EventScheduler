@@ -36,16 +36,15 @@ public class EventController {
 
     @GetMapping("/new")
     public String newEvent (@ModelAttribute("event") Event event) {
-        return "/event";
+        return "/event/new";
     }
-    // finish writing later
 
     @PostMapping
     public String createEvent (@ModelAttribute("event") Event event, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) return ""; // improve later
+        if (bindingResult.hasErrors()) return "event/new";
 
         eventDAO.save(event);
-        return "redirect:/event"; // improve later
+        return "redirect:/event";
     }
 
     @GetMapping("/{id}")

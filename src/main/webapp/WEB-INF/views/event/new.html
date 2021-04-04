@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New Event</title>
+</head>
+<body>
+
+<form th:method="POST" th:action="@{/event}" th:object="${event}">
+    <label for="name">Enter name: </label>
+    <input type="text" th:field="*{name}" id = name>
+    <div style="color: orangered" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name error</div>
+    <br>
+    <label for="start_time">Enter start time: </label>
+    <input type="text" th:field="*{start_time}" id = start_time>
+    <div style="color: orangered" th:if="${#fields.hasErrors('start_time')}" th:errors="*{start_time}">Start_time error</div>
+    <br>
+    <label for="end_time">Enter end_time: </label>
+    <input type="text" th:field="*{end_time}" id = end_time>
+    <div style="color: orangered" th:if="${#fields.hasErrors('end_time')}" th:errors="*{end_time}">End_time error</div>
+    <br>
+    <label for="date">Enter date: </label>
+    <input type="text" th:field="*{date}" id = date>
+    <div style="color: orangered" th:if="${#fields.hasErrors('date')}" th:errors="*{date}">Date error</div>
+    <br>
+    <label for="room">Enter room: </label>
+    <input type="text" th:field="*{room}" id = room>
+    <div style="color: orangered" th:if="${#fields.hasErrors('room')}" th:errors="*{room}">Room error</div>
+    <br>
+    <label for="type">Enter type of event: </label>
+    <input type="text" th:field="*{type}" id = type>
+    <div style="color: orangered" th:if="${#fields.hasErrors('type')}" th:errors="*{type}">Type error</div>
+    <br>
+    <input type="submit" value="Create the event">
+</form>
+
+
+</body>
+</html>

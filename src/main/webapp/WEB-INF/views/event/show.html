@@ -1,10 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Show Event</title>
 </head>
 <body>
+
+<p th:text="${event.getEvent_id()}">VALUE</p>
+<p th:text="${event.getName()}">VALUE</p>
+<p th:text="${event.getType()}">VALUE</p>
+<p th:text="${event.getDate()}">VALUE</p>
+<p th:text="${event.getStart_time()}">VALUE</p>
+<p th:text="${event.getEnd_time()}">VALUE</p>
+<p th:text="${event.getWeekend()}">VALUE</p>
+<p th:text="${event.getRoom()}">VALUE</p>
+<p th:text="${event.getCost()}">VALUE</p>
+
+
+<a th:href="@{/event/{id}/edit (id=${event.getEvent_id()})}">Edit the event</a>
+<br/>
+<form th:method="DELETE" th:action="@{/event/{id} (id=${event.getEvent_id()})}">
+    <input type="submit" value="Delete"/>
+</form>
 
 </body>
 </html>

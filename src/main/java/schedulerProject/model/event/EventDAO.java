@@ -23,13 +23,14 @@ public class EventDAO {
         );
     }
 
+    // produces NULL
     public Event show(int id) {
-        return jdbcTemplate.query("SELECT * FROM events WHERE id=?",
+        return jdbcTemplate.query("SELECT * FROM events WHERE event_id=?",
                                     new Object[]{id},
-                                    new BeanPropertyRowMapper<>(Event.class))
+                                    new EventMapper())
                 .stream()
                 .findAny()
-                .orElse((Event) new Object());
+                .orElse(null);
     }
 
     public void save(Event event) {
@@ -39,12 +40,12 @@ public class EventDAO {
     }
 
     public void update(int id, Event eventUpd) {
-        jdbcTemplate.update("UPDATE events SET name=?, start_time=?, end_time=?, date=?, type=? room=? WHERE id=?",
+        jdbcTemplate.update("UPDATE events SET name=?, start_time=?, end_time=?, date=?, type=? room=? WHERE event_id=?",
                 eventUpd.getName(), eventUpd.getStart_time(), eventUpd.getEnd_time(),
                 eventUpd.getDate(), eventUpd.getType(), eventUpd.getRoom(), id);
     }
 
     public void delete(int id) {
-        jdbcTemplate.update("DELETE FROM events WHERE id=?", id);
+        jdbcTemplate.update("DELETE FROM events WHERE event_id=?", id);
     }
 }
