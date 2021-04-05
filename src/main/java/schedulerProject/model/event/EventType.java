@@ -1,27 +1,37 @@
 package schedulerProject.model.event;
 
 public enum EventType {
-    MEETING,
-    EDUCATIONAL,
-    SPORT,
-    YOGA,
-    RELIGIOUS,
-    HOLIDAY,
-    SECRET,
-    BUSINESS;
+    MEETING("Meeting"),
+    EDUCATIONAL("Educational"),
+    SPORT("Sport"),
+    YOGA("Yoga"),
+    RELIGIOUS("Religious"),
+    HOLIDAY("Holiday"),
+    SECRET("Secret"),
+    BUSINESS("Business");
 
-    @Override
-    public String toString() {
-        switch (this) {
-            case EDUCATIONAL: return "EDUCATIONAL";
-            case SPORT: return "SPORT";
-            case YOGA: return "YOGA";
-            case RELIGIOUS: return "RELIGIOUS";
-            case HOLIDAY: return "HOLIDAY";
-            case SECRET: return "SECRET";
-            case BUSINESS: return "BUSINESS";
-            case MEETING:
-            default: return "MEETING";
-        }
+    private final String displayValue;
+
+    private EventType(String displayValue) {
+        this.displayValue = displayValue;
     }
+
+    public String getDisplayValue() {
+        return displayValue;
+    }
+
+//    @Override
+//    public String toString() {
+//        switch (this) {
+//            case EDUCATIONAL: return "Educational";
+//            case SPORT: return "Sport";
+//            case YOGA: return "Yoga";
+//            case RELIGIOUS: return "Religious";
+//            case HOLIDAY: return "Holiday";
+//            case SECRET: return "Secret";
+//            case BUSINESS: return "Business";
+//            case MEETING:
+//            default: return "Meeting";
+//        }
+//    }
 }

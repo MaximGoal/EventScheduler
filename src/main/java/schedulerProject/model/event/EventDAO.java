@@ -34,8 +34,8 @@ public class EventDAO {
     }
 
     public void save(Event event) {
-        jdbcTemplate.update("INSERT INTO events VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
-                event.getName(), event.getType(), event.getDate(), event.getWeekend(),
+        jdbcTemplate.update("INSERT INTO events VALUES (DEFAULT, ?, ?, ?, ?, ?, ?, ?, ?)",
+                event.getName(), event.getType().toString(), event.getDate(), event.getWeekend(),
                 event.getStart_time(), event.getEnd_time(), event.getCost(), event.getRoom());
     }
 

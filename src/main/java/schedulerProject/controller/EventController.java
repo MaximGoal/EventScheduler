@@ -36,6 +36,7 @@ public class EventController {
 
     @GetMapping("/new")
     public String newEvent (@ModelAttribute("event") Event event) {
+        // return view with form ->
         return "/event/new";
     }
 

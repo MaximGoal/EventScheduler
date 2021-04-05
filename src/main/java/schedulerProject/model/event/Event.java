@@ -1,5 +1,7 @@
 package schedulerProject.model.event;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
@@ -10,33 +12,41 @@ public class Event {
     private int event_id;
     private String name;
     private EventType type;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date date;
     private int start_time;
     private int end_time;
-    private boolean weekend;
     private int room;
     private int cost;
+
+    // maybe later it'll be better to mark this boolean with @Transient annotation
+    // so DB don't needed this field anymore
+    // weekend is initialized by method " boolean isDateWeekend(Date date)"
+    private boolean weekend;
 
     public Event() {
     }
 
     public Event(String name, int start_time, int end_time, Date date) {
         this.name = name;
+        this.type = EventType.MEETING;
+        this.date = date;
         this.start_time = start_time;
         this.end_time = end_time;
-        this.date = date;
-        weekend = isDateWeekend(date);
-        type = EventType.MEETING;
+        this.weekend = isDateWeekend(date);
+        this.room = 0;
+        this.cost = 0;
     }
 
     public Event(String name, int start_time, int end_time, Date date, EventType type, int room) {
         this.name = name;
+        this.type = type;
+        this.date = date;
         this.start_time = start_time;
         this.end_time = end_time;
-        this.date = date;
-        weekend = isDateWeekend(date);
-        this.type = type;
+        this.weekend = isDateWeekend(date);
         this.room = room;
+        this.cost = 0;
         // cost = realizeCostMethod()
     }
 
