@@ -61,7 +61,7 @@ public class EventController {
     }
 
     // finish writing later
-    @PostMapping("/{id}")
+    @PatchMapping("/{id}")
     public String update (@ModelAttribute("event") @Valid Event event,
                           BindingResult bindingResult,
                           @PathVariable("id") int id) {

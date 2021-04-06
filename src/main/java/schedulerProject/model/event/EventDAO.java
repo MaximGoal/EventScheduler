@@ -40,9 +40,10 @@ public class EventDAO {
     }
 
     public void update(int id, Event eventUpd) {
-        jdbcTemplate.update("UPDATE events SET name=?, start_time=?, end_time=?, date=?, type=? room=? WHERE event_id=?",
+        jdbcTemplate.update(
+                "UPDATE events SET name=?, start_time=?, end_time=?, date=?, type=?, room=? WHERE event_id=?",
                 eventUpd.getName(), eventUpd.getStart_time(), eventUpd.getEnd_time(),
-                eventUpd.getDate(), eventUpd.getType(), eventUpd.getRoom(), id);
+                eventUpd.getDate(), eventUpd.getType().toString(), eventUpd.getRoom(), id);
     }
 
     public void delete(int id) {
