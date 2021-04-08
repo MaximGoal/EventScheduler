@@ -25,21 +25,22 @@ public class RoomDAO {
         return jdbcTemplate.query("SELECT * FROM rooms", new BeanPropertyRowMapper<>(Room.class));
     }
 
+    // produces NULL
     public Room show(int id) {
-        return jdbcTemplate.query("SELECT * FROM rooms WHERE id=?",
+        return jdbcTemplate.query("SELECT * FROM rooms WHERE room_id=?",
                 new Object[]{id},
                 new BeanPropertyRowMapper<>(Room.class))
                 .stream()
                 .findAny()
-                .orElse((Room) new Object());
+                .orElse(null);
     }
 
     public void update(int id, Room roomUpd) {
-        jdbcTemplate.update("UPDATE rooms SET name=?, address=? WHERE id=?",
+        jdbcTemplate.update("UPDATE rooms SET name=?, address=? WHERE room_id=?",
                 roomUpd.getName(), roomUpd.getAddress(), id);
     }
 
     public void delete(int id) {
-        jdbcTemplate.update("DELETE FROM rooms WHERE id=?", id);
+        jdbcTemplate.update("DELETE FROM rooms WHERE room_id=?", id);
     }
 }

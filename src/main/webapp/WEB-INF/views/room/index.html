@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en"xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Rooms</title>
+</head>
+<body>
+
+<div th:each="room : ${rooms}">
+    <a th:href="@{/room/{id}(id=${room.getRoom_id()})}"
+       th:text="${room.getRoom_id() +' , '+ room.getName() +' , '+ room.getAddress()}">
+        some room</a>
+</div>
+
+<br/>
+<hr/>
+
+<a href="/room/new">Create new room</a>
+
+</body>
+</html>
